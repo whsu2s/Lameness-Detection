@@ -1,0 +1,31 @@
+* Title: Data preprocessing: cow detection
+* Date: 28.11 to 4.12
+
+* Task
+  Detect the main object (cow) in videos
+ 
+* Purpose  
+  It is a data preprocessing step to decrease data size and simplify data procssing.
+
+* Tools
+  Python and OpenCV library
+
+* Approaches
+  1) Background subtraction: Extract the moving objects
+  2) Blob detection: Find the contours of the threshold image of the foregorund
+  3) Morphological operations: Use erosion and dilation to remove noise, and isolate or join contours
+  4) Object detection: Draw bounding box around the maximum contour
+  5) Video cropping: Crop the video to remove unwanted content
+
+* Observations/Issues
+  1) Cannot play video using cv2.imshow: OpenCV may not been built with FFMPEG support. 
+  2) Background subtraction is not efficient to extract the object.
+  3) Reflection of the object was treated as part of the object.
+  4) The size of output video should be the same as that of the processed frames. 
+
+* Result
+  The program can detect the cow in the videos by drawing bounding box, but the performance is unsatisfying if the cow is occluded by the fences or with reflection.
+
+* Conclusion
+  Object detection can be achieved by identifying the contours resulted from background subtraction. Further steps may be necessary to get better results.
+
