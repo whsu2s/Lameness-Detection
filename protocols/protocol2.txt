@@ -1,0 +1,29 @@
+* Title: Data preprocessing: cow detection
+* Date: 04.12 to 10.12
+
+* Task
+  Improve the result of object detection from last week.
+ 
+* Purpose  
+  Make bounding box more accurate and move more smoothly
+
+* Tools
+  Python, OpenCV library, and bgslibrary (SuBSENSE)
+
+* Approaches
+  1) Background subtraction: Extract the moving objects
+  2) Blob detection: Find the contours of the threshold image of the foregorund
+  3) Morphological operations: Use erosion and dilation to remove noise, and isolate or join contours
+  4) Object detection: Draw bounding box around the maximum contour
+  5) Video cropping: Crop the video to remove unwanted content
+
+* Observations/Issues
+  1) The SuBSENS performs better than most background subtraction algorithms with a cost of computational cost.
+  2) The detection still does not work well when the object is occluded.
+  3) Other big objects are also detected, so the threshold of blob area should be modified. 
+
+* Result
+  The detection performance is affected by other big objects and occlusion.
+
+* Conclusion
+  Even though the SuBSENSE has good background subtraction performance, the object detection still needs to be improved.
