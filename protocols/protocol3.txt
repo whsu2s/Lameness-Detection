@@ -1,0 +1,28 @@
+* Title: Data preprocessing: cow tracking
+* Date: 10.12 to 17.12
+
+* Task
+  Smooth tracking of the cow in video clips.
+ 
+* Purpose  
+  Make bounding box move more smoothly with the object (cow), such that data annotation can be effective.
+
+* Tools
+  Python, OpenCV library, and TensorFlow object detection API (https://github.com/tensorflow/models/tree/master/research/object_detection).
+
+* Approaches
+  1) Object detection: Detect only the cow in a video clip using TensorFlow object detection API. The function 'visualize_boxes_and_labels_on_image_array()' in 'models/research/object_detection/utils/visualization_utils.py' should be modified.
+  2) Centroid estimation: Find the centroid of the cow by locating the center of bounding box from the object detection API.
+  3) Centroid refinement: Since the cow may not be detected in some frame or the bounding box may bounce back and forth, Kalman filter is used to predict the more accurate centroid, with the assumption of constant velocity. A new bounding box based on the refined centroid is drawn in each frame.
+  4) Video cropping: Crop the video to extract the regio of interest.
+
+* Observations/Issues
+  1) The model of object detection can be selected from TensorFlow detection model zoo (https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md). The tradeoff between accuracy and computational cost should be considered.
+  2) Exponential moving average was initially tried in the centroid refinement step, but it could not resolve shaky centroid estimation in some frames.
+  3) Kalman filter worked better than the moving average, but the parameters should be tuned by trial and error. Since the initial centroid estimation is noisy, both the measurement noise and process noise were assumed to be large. 
+
+* Result
+  The tracking moved smoothly in each frame, but the performance degrades if the cow does not move with constant speed.
+
+* Conclusion
+  The TensorFlow obeject detection API works well, but an additional step is required for smooth object tracking. Kalman filter is a useful tool for the prediction of noisy data measurements that change over time. Extended Klaman filter can be used to in more complicated cases.
