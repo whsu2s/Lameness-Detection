@@ -1,5 +1,5 @@
 * Title: Data preprocessing: cow tracking
-* Date: 10.12 to 17.12
+* Date: 10.12 to 16.12
 
 * Task
   Smooth tracking of the cow in video clips.
