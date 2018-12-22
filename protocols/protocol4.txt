@@ -1,0 +1,27 @@
+* Title: Data annotation: cow labeling
+* Date: 17.12 to 21.12
+
+* Tasks
+  1) Improve the tracking result.
+  2) Label multiple key points of the cow in video clips, and train an existing network for cow pose estimation.
+ 
+* Purpose  
+  Cow labelling (data annotation) aims to train a network for pose estimation, which will be further used as the training data for lameness detection.
+
+* Tools
+  Python, OpenCV library, and TensorFlow object detection API (https://github.com/tensorflow/models/tree/master/research/object_detection) for tracking; MATLAB LEAP toolbox (https://github.com/talmo/leap) for data annotation.
+
+* Approaches
+  1) Improve tracking: Kalman filter is used to estimate the center of the bounding box surrounding the cow in the videos. Both the horizontal and vertical directions are considered.
+  2) Data annotation: Each video is first converted from .mp4 to .h5 file. The file is then used as the input to the LEAP toolbox. Specify a few (4) keypoints on the cow and label a certain amount of frames, which are considered as the training data for cow pose estimation. 
+
+* Observations/Issues
+  1) The network incorrectly predicted the points on the edges as the keypoints on the cow. One reason could be the keypoints were not properly selected.
+  2) The frames contain not only the cow but also the background, which makes pose estimation complicated and difficult. 
+  3) The size of each frame is still large, making training difficult.
+
+* Result
+  The network cannot produce proper pose estimation. Many predicted keypoints are on the boundary of the frames. 
+
+* Discussion and conclusion
+  Different keypoints (both on and off the edge) should be selected to see if the network can predict the pose more accurately. To improve the result, more training data may be necessary, and the frame size may need to be decrease. 
