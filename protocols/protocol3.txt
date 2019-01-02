@@ -17,7 +17,7 @@
   4) Video cropping: Crop the video to extract the regio of interest.
 
 * Observations/Issues
-  1) The model of object detection can be selected from TensorFlow detection model zoo (https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md). The tradeoff between accuracy and computational cost should be considered.
+  1) The model of object detection can be selected from TensorFlow detection model zoo (https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md). The tradeoff between accuracy and computational cost should be considered. The 'faster_rcnn_resnet101_coco' was used because it worked better than the simpler ones like 'ssd_mobilenet'. 
   2) Exponential moving average was initially tried in the centroid refinement step, but it could not resolve shaky centroid estimation in some frames.
   3) Kalman filter worked better than the moving average, but the parameters should be tuned by trial and error. Since the initial centroid estimation is noisy, both the measurement noise and process noise were assumed to be large. 
 
