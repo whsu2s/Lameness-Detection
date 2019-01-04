@@ -1,0 +1,38 @@
+* Title: Data annotation: cow labeling
+* Date: 31.12.18 to 04.01.19
+
+* Tasks
+  1) Label multiple key points of the cow in video clips, and train an existing network for cow pose estimation.
+  2) Compare two pose estimation approaches: LEAP and DeepLabCut.
+ 
+* Purpose  
+  Cow labelling (data annotation) aims to train a network for pose estimation, which will be further used as the training data for lameness detection.
+
+* Tools
+  DeepLabCut (https://github.com/AlexEMG/DeepLabCut) for data annotation.
+
+* Procedures
+  1) Install the DeepLabCut toolbox.
+  2) Prepare videos for annotation.
+  3) Follow the instruction in 'Demo_yourowndata.ipynb'. The most important steps are: 
+      a) Create a project: Create a project directory.  
+      b) Configure the project: Specify the number of frames for labeling, and bodyparts for labeling in 'config.yaml' file.
+      c) Frame extraction
+      d) Frames annotation in a GUI: Label each bodypart in an orderly fashion. Skip the occluded parts.
+      e) Network training: Remember to add the argument 'gputouse' in deeplabcut.train_network(config_path, gputouse=0).
+      f) Evaluation: evaluate the trained network and produce labeled video.
+  4) In case the results are unsatisfying, extract outlier frames, refine the labels, and re-train the network. The weights from the initial training can be used as the initial weights by specifying the full path of the checkpoint to the variable init_weights in the pose_cfg.yaml file under the train subdirectory.  (e.g. init_weights: ~/.../train/snapshot-20000)
+
+* Observations/Issues
+  1) It seems the cows were recorded before being milked, which may have an effect on their locomotion.
+  2) The location of the cow's hoofs are hard to be predicted, especially when the limbs are overlapped. 
+  3) Training time: It took roughly an hour to run 12000 iterations for around 25*10 frames with a resolution of 680*420.
+  4) The prediction is slightly poor when the cow is under sun.
+  5) Occlusion may cause poor pose estimation.
+  6) Remember to add the argument 'max_snapshots_to_keep' in 'deeplabcut.train_network()' to save more parameters.
+
+* Result
+  The training error is about 4.0 pixels, and test error around 8.0 pixels. After re-training by including the refined frames, the training error is 3.9 and test error reduces to 5.3.
+
+* Conclusion
+  The DeepLabCut toolbox performed much better than LEAP in cow pose estimation, even though it took more iterations and time to train. 
