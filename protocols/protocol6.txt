@@ -1,0 +1,27 @@
+* Title: Locomotion score regression
+* Date: 07.01.19 to 13.01.19
+
+* Tasks
+  Train a support vector regression model for locomotion score prediction.
+ 
+* Purpose  
+  It is the initial step toward automatic locomotion scoring system.
+
+* Tools
+  Python, sklearn toolbox
+* Procedures
+  1) Define features for data training.
+  2) Process data from the labelled video files.
+  3) Prepare data for training and testing and apply feature scaling.
+  4) Train a support vectir regression (SVR) model using training data.
+  5) Test the model using test data.
+
+* Observations/Issues
+  1) The data (coordinates of the keypoints) are noisy because the extracted videos are shaky and the location of the keypoints vary from frame to frame.
+  2) The test result was poor while the training result was decent. However, there were no extract data to deal with over-fitting. 
+
+* Result
+  The test result was poor while the training result was decent.
+
+* Conclusion
+  The data is overfitting, so different strategies should be cosidered, such as the features to be used and the amount of data for training.
