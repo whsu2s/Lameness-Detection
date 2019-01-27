@@ -1,0 +1,27 @@
+* Title: Thesis proposal
+* Date: 14.01.19 to 27.01.19
+
+* Tasks
+  Literature survey and proposal
+ 
+* Purpose  
+  Include state of the art of gait and pose analysis
+
+* Proposal structure
+  1) Introduction
+  2) Related Work
+    2.1 Lameness detection
+    2.2 Deep learning
+    2.3 Motion analysis
+        2.3.1 pose estimation
+        2.3.2 gait & pose analysis
+  3) Methodology
+    3.1 Data acquisition and preprocessing
+    3.2 Pose estimation
+    3.3 Gait and pose analysis for locomotion score prediction
+  4) Work Plan
+    4.1 Work packages
+    4.2 Project schedule
+    4.3 Deliverables
+  References
+
