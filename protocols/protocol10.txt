@@ -1,0 +1,21 @@
+* Title: Data preprocessing: cow tracking
+* Date: 25.02 to 01.03
+
+* Task
+  Cow extraction of all the video data.
+ 
+* Purpose  
+  Extract the cow and reduce the data size as the preprocessing step of lameness detection.
+
+* Tools
+  Python, OpenCV library, and TensorFlow object detection API (https://github.com/tensorflow/models/tree/master/research/object_detection).
+
+* Observations/Issues 
+  1) The results are poor if the cow does not move with constant speed or has occlusion.
+  2) In some videos, there was an abrupt change of the location of bounding box using Tensorflow object detection or traditional vision tecnique.
+
+* Result
+  It took 11hrs 56min 33sec to extract 344 videos (1920 by 1080, each around 10 sec) using ResNet50 in Tensorflow object detection API. Data cleansing had to be done on around 30 percent of data. There are around five files need to be process manually for cow extraction. 
+
+* Conclusion
+  The TensorFlow obeject detection API works well for cow extraction, but traditional approach using background subtraction works better in some cases with occlusion. Still, there are some data that need to be manually processed.
