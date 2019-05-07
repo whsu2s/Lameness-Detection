@@ -11,4 +11,8 @@ The raw data consist of 501 videos with a resolution of 1920 × 1080 at 50 frame
 ### Pose Estimation
 This step estimates the pose of cows by extracting a few keypoints from their body. An open-source framework called [DeepLabCut](https://github.com/AlexEMG/DeepLabCut) is used for pose estimation. The whole process can be carried out by following the instructions in [DeepLabCut Demo](https://github.com/AlexEMG/DeepLabCut/blob/master/examples/Demo_yourowndata.ipynb).
 
+## Training
 
+### Approach1
+
+### Approach2
