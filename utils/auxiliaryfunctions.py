@@ -65,10 +65,10 @@ def f_score(cm):
 def print_analysis(cm):
     #cm = confusion_matrix(y_true, y_pred, labels=[0, 1, 2, 3])
     print('Confusion matrix:')
-    print(cm, type(cm))
+    print(cm)
     print("Accuracy: ", accuracy(cm))
     print()
     print("label precision recall f-score")
-    for label in range(4):
+    for label in range(cm.shape[0]):
         print("{0:5d} {1:7.3f} {2:8.3f} {3:6.3f}".format(label, precision(cm)[label], recall(cm)[label], 
                                                      f_score(cm)[label]))
