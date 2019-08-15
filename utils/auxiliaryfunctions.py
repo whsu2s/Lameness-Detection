@@ -5,7 +5,7 @@ import os
 
 def tag_loc(tag):
     ''' Return the corresponding location in csv file for the n-th day data'''
-    return (tag + 1) if tag != 14 else 8
+    return (tag + 1) if tag != 14 else 9
 
 def classify(score):
     ''' Convert locomotion score to label '''
@@ -18,6 +18,15 @@ def classify(score):
     elif score >= 4:
         label_index = 4
     return label_index
+
+def class_distribution(dataset):
+    num_classes = len(dataset.classes)
+    label_table = dataset.label_table
+    labels = [[] for i in range(num_classes)]
+    for i,  (cow, sample) in enumerate(dataset):
+        label = sample['label']
+        labels[int(label)].append(label)
+    print('Class distribution: ', [len(labels[i]) / len(dataset) for i in range(num_classes)])
 
 """
 Functions for data preprocessing
