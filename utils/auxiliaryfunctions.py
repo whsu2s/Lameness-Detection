@@ -7,16 +7,24 @@ def tag_loc(tag):
     ''' Return the corresponding location in csv file for the n-th day data'''
     return (tag + 1) if tag != 14 else 9
 
-def classify(score):
+def classify(score, class_type='lms'):
     ''' Convert locomotion score to label '''
-    if score < 2:
-        label_index = 1
-    elif score >= 2 and score < 3:
-        label_index = 2
-    elif score >= 3 and score < 4:
-        label_index = 3
-    elif score >= 4:
-        label_index = 4
+    if class_type == 'lms':
+        if score < 2:
+            label_index = 1
+        elif score >= 2 and score < 3:
+            label_index = 2
+        elif score >= 3 and score < 4:
+            label_index = 3
+        elif score >= 4:
+            label_index = 4
+    elif class_type == 'binary':
+        if score <= 2:
+            label_index = 1
+        elif score > 2:
+            label_index = 2
+    else:
+        print('There is no such classification type.')
     return label_index
 
 def class_distribution(dataset):
