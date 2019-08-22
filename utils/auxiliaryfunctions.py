@@ -61,6 +61,36 @@ def categorize_data(dataset, label_table):
         elif label == 4:
             shutil.move(file, path + '/LS4')
 
+"""
+Functions for data augmentation
+"""
+def scale(poses, mean=1, std=0.15):
+    """
+    Scale the poses with normal distribution, given mean and std
+    """
+    poses[:, 0::2] = poses[:, 0::2] * np.random.normal(mean, std)
+    
+    return poses
+
+def rotate(poses, angle=10):
+    """
+    Rotate the points counterclockwise by a given angle around a given origin, 
+    given the pose sequence: poses (num_seqences, num_features)
+    The angle should be given in degrees.
+    """
+    for f in range(poses.shape[0]):  # Iterate through sequences (frames)
+            for i in range(25):      # Iterate through features
+                px, py, pz = poses[f, i*3:i*3+3]  # point
+                ox, oy, oz = poses[f, 6:9]        # origin (reference point): neck (third in pose)
+                # rotation 
+                angle = angle * np.pi/180
+                qx = ox + np.cos(angle) * (px - ox) - np.sin(angle) * (py - oy)
+                qy = oy + np.sin(angle) * (px - ox) + np.cos(angle) * (py - oy)
+                qz = pz
+                poses[f, i*3:i*3+3] = qx, qy, qz
+    
+    return poses
+
 """ 
 Functions for statistical analysis 
   * cm: confusion matrix created from sklearn.metrics
