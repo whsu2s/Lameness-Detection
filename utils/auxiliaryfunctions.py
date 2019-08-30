@@ -27,12 +27,12 @@ def classify(score, class_type='lms'):
         print('There is no such classification type.')
     return label_index
 
-def class_distribution(dataset):
+def class_distribution(dataset, class_type='lms'):
     num_classes = len(dataset.classes)
     label_table = dataset.label_table
     labels = [[] for i in range(num_classes)]
     for i,  (cow, sample) in enumerate(dataset):
-        label = sample['label']
+        label = classify(sample['label'], class_type='lms') - 1
         labels[int(label)].append(label)
     print('Class distribution: ', [len(labels[i]) / len(dataset) for i in range(num_classes)])
 
