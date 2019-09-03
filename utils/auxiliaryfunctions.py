@@ -19,9 +19,9 @@ def classify(score, class_type='lms'):
         elif score >= 4:
             label_index = 4
     elif class_type == 'binary':
-        if score <= 2:
+        if score < 2.5:
             label_index = 1
-        elif score > 2:
+        elif score >= 2.5:
             label_index = 2
     else:
         print('There is no such classification type.')
@@ -33,7 +33,7 @@ def class_distribution(dataset, class_type='lms'):
     class_type = class_type
     labels = [[] for i in range(num_classes)]
     for i,  (cow, sample) in enumerate(dataset):
-        label = classify(sample['label'], class_type=class_type) - 1
+        label = sample['label']
         labels[int(label)].append(label)
     print('Class distribution: ', [len(labels[i]) / len(dataset) for i in range(num_classes)])
 
