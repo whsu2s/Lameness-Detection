@@ -9,7 +9,7 @@ Lameness is a serious disorder in dairy farms that increases the risk of culling
 The raw data consist of 500 videos with a resolution of 1920 × 1080 at 50 frames per second (fps). Each video ranges from around four to twenty seconds long and contains a cow walking from left to right of the frame. These video were cropped in such a way that the cow is at the center of each frame, which also reduces the size of the data. The processed video clips have a resolution of 680×420 at 20 fps.
 
 ### Pose Estimation
-This step estimates the pose of cows by extracting 25 keypoints (Figure shown below) from their body. An open-source framework called [DeepLabCut](https://github.com/AlexEMG/DeepLabCut) is used for pose estimation. The whole process can be carried out by following the instructions in [DeepLabCut Demo](https://github.com/AlexEMG/DeepLabCut/blob/master/examples/Demo_yourowndata.ipynb). The DeepLabCut toolbox generates labeled dataset (frames of (x,y))
+This step estimates the pose of cows by extracting 25 keypoints (Figure shown below) from their body. An open-source framework called [DeepLabCut](https://github.com/AlexEMG/DeepLabCut) is used for pose estimation. The whole process can be carried out by following the instructions in [DeepLabCut Demo](https://github.com/AlexEMG/DeepLabCut/blob/master/examples/Demo_yourowndata.ipynb). The predicted poses genertaed by DeepLabCut toolbox were transformed into JavaScript Object Notation (JSON) from hierarchical data format (HDF) files to form the skeleton sequence dataset (frames of (x,y) coordinates of keypoints in pixels for each video).
 
 <div align="center">
     <img src="img/keypoints.png">
@@ -17,6 +17,5 @@ This step estimates the pose of cows by extracting 25 keypoints (Figure shown be
 
 ## Training
 
-### Approach1
+### Approach
 
-### Approach2
