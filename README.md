@@ -24,5 +24,3 @@ This step estimates the pose of cows by extracting 25 keypoints (Figure shown be
 
 ## Training
 
-### Approach
-
