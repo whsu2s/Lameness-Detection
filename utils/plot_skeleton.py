@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Usage example: python cow_tracking3.py --input data_input/Tag4/cow1404.mp4 --output outputs/crop.mp4
+# Usage example: python3 plot_skeleton.py --input data_input/Tag4/cow1404.mp4 --output outputs/crop.mp4
 
 import numpy as np
 import os

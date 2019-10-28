@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Usage example: python create_skeleton.py --input ~/Documents/Thesis/src/annotation/data/all2/ --output ~/Documents/Thesis/src/annotation/data/all2/data_json/
+# Usage example: python3 create_skeleton.py --input ~/Documents/Thesis/src/annotation/data/all2/ --output ~/Documents/Thesis/src/annotation/data/all2/data_json/
 
 import numpy as np
 import os
