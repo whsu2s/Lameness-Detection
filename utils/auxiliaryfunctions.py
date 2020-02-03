@@ -2,6 +2,7 @@ import numpy as np
 from sklearn.metrics import confusion_matrix, f1_score
 import shutil
 import os
+from scipy.signal import savgol_filter
 
 def tag_loc(tag):
     ''' Return the corresponding location in csv file for the n-th day data'''
