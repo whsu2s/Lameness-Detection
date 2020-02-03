@@ -62,6 +62,25 @@ def categorize_data(dataset, label_table):
         elif label == 4:
             shutil.move(file, path + '/LS4')
 
+def sg_smooth(array, num_joints=25, dim=2):
+    """ Smooth the joint coordinates """ 
+    for i in range(num_joints):
+        joint = array[:, dim*i:dim*i+dim] 
+        filtered_joint = savgol_filter(joint, 15, 2, axis=0) # window length: 15, poly degree: 2
+        array[:, dim*i:dim*i+dim] = filtered_joint
+    return array
+
+"""
+Functions for feature extraction
+"""
+def points2radius(p1, p2, p3):
+    """ Calculate the radius of circle given three points """
+    a = np.linalg.norm(p3 - p2)
+    b = np.linalg.norm(p3 - p1)
+    c = np.linalg.norm(p2 - p1)
+    s = (a + b + c) / 2
+    return a*b*c / 4 / np.sqrt(s * (s - a) * (s - b) * (s - c))
+
 """
 Functions for data augmentation
 """
