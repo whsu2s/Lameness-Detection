@@ -28,10 +28,16 @@ A hierarchical recurrent neural network ([HRNN](https://www.cv-foundation.org/op
 ### Hierarchical Recurrent Neural Network ([HRNN](https://www.cv-foundation.org/openaccess/content_cvpr_2015/html/Du_Hierarchical_Recurrent_Neural_2015_CVPR_paper.html))
 The network is based on the idea that actions are dependent on the movements of individual body parts and their combinations. The coordinates of the five body parts are fed into five subnets, and the representations of each part are hierarchically fused as the number of layers increases.
 
+<p align="center">
+    <img align="center" src="img/hrnn.png" | width=700>
+</p>
 
 ### Random Foreset
 To apply the random forest, several features were selected: right/left step overlaps, strides, back arch. These features were calculated from the skeleton data across the time sequence for each data sample (cow). 
 
+<p align="center">
+    <img src="img/features.png" | width=300>
+</p>
 
 ### K-Clustering (Unsupervised Learning)
 The reason of applying unsupervised learning is to avoid the issue of incorrect manual labeling (locomotion scores).
