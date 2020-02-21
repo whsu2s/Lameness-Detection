@@ -1,5 +1,5 @@
 # Lameness-Detection
-Lameness is a serious disorder in dairy farms that increases the risk of culling of cattle as well as economic losses. This issue is addressed by lameness detection using locomotion scoring, which assesses the lameness level of cattle by their pose and gait patterns. This project aims to evaluate the efficacy of deep neural networks in the context of automated locomotion scoring.
+Lameness is a serious disorder in dairy farms that increases the risk of culling of cattle as well as economic losses. This issue is addressed by lameness detection using locomotion scoring, which assesses the lameness level of cattle by their pose and gait patterns. This project aims to evaluate the efficacy of deep neural networks in the context of automated locomotion scoring, with a comparison with other machine learning methods.
 
 <div align="center">
     <img src="img/workflow.png">
@@ -22,5 +22,19 @@ This step estimates the pose of cows by extracting 25 keypoints (Figure shown be
     <img src="img/keypoints.png">
 </div>
 
-## Training
+## Approach
+A hierarchical recurrent neural network ([HRNN](https://www.cv-foundation.org/openaccess/content_cvpr_2015/html/Du_Hierarchical_Recurrent_Neural_2015_CVPR_paper.html)) was adopted to train the skeleton data for lameness detection. Two other machine learning methods were used for comparison.
+
+### Hierarchical Recurrent Neural Network ([HRNN](https://www.cv-foundation.org/openaccess/content_cvpr_2015/html/Du_Hierarchical_Recurrent_Neural_2015_CVPR_paper.html))
+The network is based on the idea that actions are dependent on the movements of individual body parts and their combinations. The coordinates of the five body parts are fed into five subnets, and the representations of each part are hierarchically fused as the number of layers increases.
+
+
+### Random Foreset
+To apply the random forest, several features were selected: right/left step overlaps, strides, back arch. These features were calculated from the skeleton data across the time sequence for each data sample (cow). 
+
+
+### K-Clustering (Unsupervised Learning)
+The reason of applying unsupervised learning is to avoid the issue of incorrect manual labeling (locomotion scores).
+
+## Result
 
