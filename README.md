@@ -44,3 +44,10 @@ The reason of applying unsupervised learning is to avoid the issue of incorrect 
 
 ## Result
 
+## Discussion
+After the analysis of results, the issues of this project are sumarized below:
+1. Data: Both the data amount and quality play a significant role.  
+
+2. Method: The adoption of HRNN is based on the assumption that the features of each body part and their correlation are important to detect lameness. The method can be improved by including another stream of cow's whole body, such that the model can learn features not only from individual body parts but also from the whole appearance.
+
+3. Pose estimation
