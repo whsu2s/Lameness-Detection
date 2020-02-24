@@ -23,7 +23,7 @@ This step estimates the pose of cows by extracting 25 keypoints (Figure shown be
 </div>
 
 ## Approach
-A hierarchical recurrent neural network ([HRNN](https://www.cv-foundation.org/openaccess/content_cvpr_2015/html/Du_Hierarchical_Recurrent_Neural_2015_CVPR_paper.html)) was adopted to train the skeleton data for lameness detection. Two other machine learning methods were used for comparison.
+A hierarchical recurrent neural network ([HRNN](https://www.cv-foundation.org/openaccess/content_cvpr_2015/html/Du_Hierarchical_Recurrent_Neural_2015_CVPR_paper.html)) was adopted to train the skeleton data for lameness detection. Two other machine learning methods were used for comparison, namely the Random Forest and K-Clustering.
 
 ### Hierarchical Recurrent Neural Network ([HRNN](https://www.cv-foundation.org/openaccess/content_cvpr_2015/html/Du_Hierarchical_Recurrent_Neural_2015_CVPR_paper.html))
 The network is based on the idea that actions are dependent on the movements of individual body parts and their combinations. The coordinates of the five body parts are fed into five subnets, and the representations of each part are hierarchically fused as the number of layers increases.
@@ -33,16 +33,44 @@ The network is based on the idea that actions are dependent on the movements of 
 </p>
 
 ### Random Foreset
-To apply the random forest, several features were selected: right/left step overlaps, strides, back arch. These features were calculated from the skeleton data across the time sequence for each data sample (cow). 
+To apply the random forest, several features are selected: right/left step overlaps, strides, and back arch (radius from three keypoints on the back). These features are calculated from the skeleton data across the time sequence for each data sample (cow). 
 
 <p align="center">
     <img src="img/features.png" | width=300>
 </p>
 
+### HRNN + Random Foreset
+As the HRNN can automatically extract features from the skeleton sequences, these features can be used to train the random forest. 
+
 ### K-Clustering (Unsupervised Learning)
 The reason of applying unsupervised learning is to avoid the issue of incorrect manual labeling (locomotion scores).
 
 ## Result
+This section summarizes the experimental results of HRNN, Rnadom Forest, and K-Clustering.
+
+### HRNN and its variants
+Inspired by the original paper of HRNN(https://www.cv-foundation.org/openaccess/content_cvpr_2015/html/Du_Hierarchical_Recurrent_Neural_2015_CVPR_paper.html), three variants are compared:
+
+  * HBRNN: Heirarchically Bidirectional RNN
+  * HURNN: Heirarchically unidirectional RNN
+  * DBRNN: Deep Bidirectional RNN, in which stacked bidirectional RNN is trained with the whole skeleton as input
+
+| Architecture  | Accuracy (%)  | F1 Score  |
+|      :-:      |      :-:      |    :-:    |
+|     HBRNN     |      74.6     |   0.583   |
+|     HURNN     |      74.3     |   0.527   |
+|     DBRNN     |      73.6     |   0.572   |
+
+### HRNN and Random Forest
+
+|   Methods  |  Accuracy (%) | F1 Score  |
+|    :-:     |      :-:      |    :-:    |
+|    HBRNN   |      74.6     |   0.583   |
+|     RF     |      69.6     |   0.574   |
+| RF + HBRNN |           |      |
+
+
+
 
 ## Discussion
 After the analysis of results, the issues of this project are sumarized below:
