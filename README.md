@@ -70,12 +70,13 @@ Inspired by the original paper of HRNN(https://www.cv-foundation.org/openaccess/
 | RF + HBRNN |           |      |
 
 
-
-
 ## Discussion
 After the analysis of results, the issues of this project are sumarized below:
-1. Data: Both the data amount and quality play a significant role.  
+1. Data: Both the data amount and quality play a significant role, but the two factors are correlated in this project. The skelton sequences are used as input data as a way to encode the cow's gait and pose as prior knowledge to circumvent the issue of lack of data. However, the skeleton sequences are noisy, which has a great impact on lameness detection. 
 
 2. Method: The adoption of HRNN is based on the assumption that the features of each body part and their correlation are important to detect lameness. The method can be improved by including another stream of cow's whole body, such that the model can learn features not only from individual body parts but also from the whole appearance.
 
 3. Pose estimation
+
+
+## Conclusions
