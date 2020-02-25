@@ -42,8 +42,8 @@ To apply the random forest, several features are selected: right/left step overl
 ### HRNN + Random Foreset
 As the HRNN can automatically extract features from the skeleton sequences, these features can be used to train the random forest. 
 
-### K-Clustering (Unsupervised Learning)
-The reason of applying unsupervised learning is to avoid the issue of incorrect manual labeling (locomotion scores).
+### K-Means Clustering (Unsupervised Learning)
+Given a specified number of centroids, k-means clustering allocates each data sample to one of the centroids based on the distance between the samples and the centroids. In this case, the paramter k is the number of classes. In order to assess the result, the manual scores are used to calculate the accuracy and F1-score from the clustered data.
 
 ## Result
 This section summarizes the experimental results of HRNN, Rnadom Forest, and K-Clustering.
@@ -75,14 +75,22 @@ Rnadom forest was trained in two ways: one (RF) with five hand-crafted features,
     <img src="img/features.png" | width=300>
 </p>
 
+### K-Means Clustering
+
+
 
 ## Discussion
 After the analysis of results, the issues of this project are sumarized below:
-1. Data: Both the data amount and quality play a significant role, but the two factors are correlated in this project. The skelton sequences are used as input data as a way to encode the cow's gait and pose as prior knowledge to circumvent the issue of lack of data. However, the skeleton sequences are noisy, which has a great impact on lameness detection. 
+1. Data: 
+Both the data amount and quality play a significant role, but the two factors are correlated in this project. The skelton sequences are used as input data as a way to encode the cow's gait and pose as prior knowledge to circumvent the issue of lack of data. However, the skeleton sequences are noisy, which has a great impact on lameness detection. 
 
-2. Method: The adoption of HRNN is based on the assumption that the features of each body part and their correlation are important to detect lameness. The method can be improved by including another stream of cow's whole body, such that the model can learn features not only from individual body parts but also from the whole appearance.
+2. Method: 
+The adoption of HRNN is based on the assumption that the features of each body part and their correlation are important to detect lameness. The method can be improved by including another stream of cow's whole body, such that the model can learn features not only from individual body parts but also from the whole appearance.
 
 3. Pose estimation
+
+4. Unsupervised learning: 
+The reason of applying unsupervised learning is to avoid the issue of incorrect manual labeling (locomotion scores).  Nonetheless, the manual scores were considered as the ground truth to assess the performance of the k-means clustering since there was no way to validate the manual scores. With a closer look into the clustering result, healthy and lame cows could not be correctly differetiated.
 
 
 ## Conclusions
