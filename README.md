@@ -62,12 +62,18 @@ Inspired by the original paper of HRNN(https://www.cv-foundation.org/openaccess/
 |     DBRNN     |      73.6     |   0.572   |
 
 ### HRNN and Random Forest
+Rnadom forest was trained in two ways: one (RF) with five hand-crafted features, and the other (RF + HBRNN) with 80 features from the 7th layer of HBRNN. While hand-crafted features appear to be better than the automatic features from HBRNN in training random forest, the HBRNN still shows better performance in terms of both the accuracy and F1 score. 
 
 |   Methods  |  Accuracy (%) | F1 Score  |
 |    :-:     |      :-:      |    :-:    |
 |    HBRNN   |      74.6     |   0.583   |
 |     RF     |      69.6     |   0.574   |
-| RF + HBRNN |           |      |
+| RF + HBRNN |      56.1     |   0.408   |
+
+
+<p align="center">
+    <img src="img/features.png" | width=300>
+</p>
 
 
 ## Discussion
