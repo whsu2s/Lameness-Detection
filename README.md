@@ -76,7 +76,16 @@ Rnadom forest was trained in two ways: one (RF) with five hand-crafted features,
 </p>
 
 ### K-Means Clustering
+Two sets of features were used: skeleton sequence, and the five hand-crafted features as explained above. The multi-dimensional skeleton sequences are visualized using t-Distributed Stochastic Neighbor Embedding (t-SNE), a non-linear technique for dimensionality reduction, as shown below. There is no clear boundary between healthy and lame cows, which may explain the low accuracy. 
 
+|   Features   |  Accuracy (%) | F1 Score  |
+|      :-:     |      :-:      |    :-:    | 
+|   skeleton   |      49.6     |   0.468   |
+| hand-crafted |      42.5     |   0.526   |
+
+<p align="center">
+    <img src="img/km-perplexity.png" | width=800>
+</p>
 
 
 ## Discussion
@@ -84,13 +93,15 @@ After the analysis of results, the issues of this project are sumarized below:
 1. Data: 
 Both the data amount and quality play a significant role, but the two factors are correlated in this project. The skelton sequences are used as input data as a way to encode the cow's gait and pose as prior knowledge to circumvent the issue of lack of data. However, the skeleton sequences are noisy, which has a great impact on lameness detection. 
 
-2. Method: 
+2. Feature extraction:
+Lameness detection requires long observation and careful investigation of a cow's movements. Lameness features are subtle; besides, any change of pose or locomotion does not necessarily imply lameness. With noisy skeleton data, it is extremely hard to distinguish between healthy and lame cows. As for hand-crafted features, the errors can be accumulated from the noisy skeleton sequences. The selected keypoints may have affected the process as well.
+
+3. Method: 
 The adoption of HRNN is based on the assumption that the features of each body part and their correlation are important to detect lameness. The method can be improved by including another stream of cow's whole body, such that the model can learn features not only from individual body parts but also from the whole appearance.
 
-3. Pose estimation
-
 4. Unsupervised learning: 
-The reason of applying unsupervised learning is to avoid the issue of incorrect manual labeling (locomotion scores).  Nonetheless, the manual scores were considered as the ground truth to assess the performance of the k-means clustering since there was no way to validate the manual scores. With a closer look into the clustering result, healthy and lame cows could not be correctly differetiated.
+The reason of applying unsupervised learning is to avoid the issue of incorrect manual labeling (locomotion scores).  Nonetheless, the manual scores were considered as the ground truth to assess the performance of the k-means clustering since there was no way to validate the manual scores. With a closer look into the clustering result, healthy and lame cows could not be correctly differentiated.
 
 
 ## Conclusions
+The aim of this study was to assess the efficacy of deep neural networks (HRNN) and differnt machine learning methods in automated lameness detection. Without sufficient data, the skelton sequences are used as input data as a way to encode the cow's gait and pose as prior knowledgethe. Deep learning still showed promising, although there is still room for improvement, e.g. data acquisition, feature selection, method.    
