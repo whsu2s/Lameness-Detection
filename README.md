@@ -91,7 +91,7 @@ Two sets of features were used: skeleton sequence, and the five hand-crafted fea
 ## Discussion
 After the analysis of results, the issues of this project are sumarized below:
 1. Data: 
-Both the data amount and quality play a significant role, but the two factors are correlated in this project. The skelton sequences are used as input data as a way to encode the cow's gait and pose as prior knowledge to circumvent the issue of lack of data. However, the skeleton sequences are noisy, which has a great impact on lameness detection. 
+Both the data amount and quality play a significant role, but the two factors are correlated in this project. The skeleton sequences are used as input data as a way to encode the cow's gait and pose as prior knowledge to circumvent the issue of lack of data. However, the skeleton sequences are noisy, which has a great impact on lameness detection. 
 
 2. Feature extraction:
 Lameness detection requires long observation and careful investigation of a cow's movements. Lameness features are subtle; besides, any change of pose or locomotion does not necessarily imply lameness. With noisy skeleton data, it is extremely hard to distinguish between healthy and lame cows. As for hand-crafted features, the errors can be accumulated from the noisy skeleton sequences. The selected keypoints may have affected the process as well.
@@ -104,4 +104,4 @@ The reason of applying unsupervised learning is to avoid the issue of incorrect 
 
 
 ## Conclusions
-The aim of this study was to assess the efficacy of deep neural networks (HRNN) and differnt machine learning methods in automated lameness detection. Without sufficient data, the skelton sequences are used as input data as a way to encode the cow's gait and pose as prior knowledgethe. Deep learning still showed promising, although there is still room for improvement, e.g. data acquisition, feature selection, method.    
+The aim of this study was to assess the efficacy of deep neural networks (HRNN) and differnt machine learning methods in automated lameness detection. Without sufficient data, the skelton sequences are used as input data as a way to encode the cow's gait and pose as prior knowledgethe. Deep learning still showed promising result, although there is still room for improvement, e.g. data acquisition, feature selection, method.    
