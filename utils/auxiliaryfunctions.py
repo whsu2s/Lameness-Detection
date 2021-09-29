@@ -4,12 +4,20 @@ import shutil
 import os
 from scipy.signal import savgol_filter
 
+
 def tag_loc(tag):
-    ''' Return the corresponding location in csv file for the n-th day data'''
+    """
+        Return the corresponding location in csv file for the n-th day (tag) data.
+        The original data contains 9 days: 0 ~ 7, 14.
+    """
     return (tag + 1) if tag != 14 else 9
 
+
 def classify(score, class_type='lms'):
-    ''' Convert locomotion score to label '''
+    """
+        Convert locomotion score to label. Class type can be lms (four classes) or binary.
+        Since there are few cows with a locomotion score of 5, score 4 and 5 are combined.
+    """
     if class_type == 'lms':
         if score < 2:
             label_index = 1
@@ -28,6 +36,7 @@ def classify(score, class_type='lms'):
         print('There is no such classification type.')
     return label_index
 
+
 def class_distribution(dataset, class_type='lms'):
     num_classes = len(dataset.classes)
     label_table = dataset.label_table
@@ -44,6 +53,7 @@ Functions for data preprocessing
 def copy_files(src, dst):
     for file in src:
         shutil.copy(file, dst)
+
 
 def categorize_data(dataset, label_table):   
     for file in dataset:
@@ -63,6 +73,7 @@ def categorize_data(dataset, label_table):
         elif label == 4:
             shutil.move(file, path + '/LS4')
 
+
 def sg_smooth(array, num_joints=25, dim=2):
     """ Smooth the joint coordinates """ 
     for i in range(num_joints):
@@ -71,9 +82,10 @@ def sg_smooth(array, num_joints=25, dim=2):
         array[:, dim*i:dim*i+dim] = filtered_joint
     return array
 
-"""
-Functions for feature extraction
-"""
+
+# Functions for feature extraction
+
+
 def points2radius(p1, p2, p3):
     """ Calculate the radius of circle given three points """
     a = np.linalg.norm(p3 - p2)
